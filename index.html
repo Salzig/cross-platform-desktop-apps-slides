@@ -250,6 +250,19 @@ app.on('ready', function() {
 
             </code></pre>
           </section>
+          <section>
+            <h2>Pack</h2>
+            <pre><code class="bash">npm install --save-dev electron-packager</code></pre>
+            <pre><code class="javascript">
+// package.json
+{
+  …
+  "scripts": {
+    "build": "electron-packager . Example --platform=darwin --arch=x64 --version=0.32.0"
+  …
+}
+            </code></pre>
+          </section>
         </section>
 
         <section>
