@@ -56,13 +56,17 @@
 					</p>
 				</section>
 
+        <section>
+          <h2>Who am i?</h2>
+        </section>
+
 				<section>
 					<h2>The Future<span class="fragment">?</span></h2>
 				</section>
 
 				<section>
 					<section>
-						<h3>Javascript is already everywhere</h3>
+						<h3>Javascript is everywhere</h3>
 						<ul>
 							<li class="fragment">Browser (Chrome, Firefox, … )</li>
 							<li class="fragment">TV (Samsung Smart TV, LG webOS TV)</li>
@@ -112,7 +116,7 @@
           </section>
 
           <section data-transition="cube">
-            <h2><a href="https://github.com/rogerwang/node-webkit" class="no-roll">node-webkit</a></h2>
+            <h2><a href="https://github.com/rogerwang/node-webkit" class="no-roll"><strike>node-webkit</strike> nw.js</a></h2>
             <p>since 2011</p>
           </section>
 
@@ -132,20 +136,121 @@
           </section>
 
           <section data-transition="cube">
-            <h2><a href="https://github.com/atom/atom-shell" class="no-roll">Atom Shell</a></h2>
+            <h2><a href="https://github.com/atom/atom-shell" class="no-roll"><strike>Atom Shell</strike> Electron</a></h2>
             <p>since 2014</p>
           </section>
         </section>
 
         <section>
         	<section>
-        		<h1>Atom Shell</h1>
+        		<h1>Electron</h1>
         	</section>
 
        		<section>
        			<h2>Demo</h2>
        		</section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Example 1</h1>
+          </section>
+          <section>
+            <h2>init</h2>
+            <pre><code class="bash">
+npm init
+npm install --save-dev electron-prebuilt
+            </code></pre>
+          </section>
+          <section>
+            <h2>package.json addition</h2>
+            <pre><code class="javascript">
+{
+  ...
+  "scripts": {
+    "start": "electron ."
+  }
+}
+            </code></pre>
+          </section>
+          <section>
+            <h2>main.js</h2>
+            <pre><code class="javascript">
+var app = require("app");
+var BrowserWindow = require("browser-window");
+var mainWindow = null;
+
+app.on('ready', function() {
+  // with node-integration jQuery wont assign itself to window
+  mainWindow = new BrowserWindow({"node-integration": false});
+  mainWindow.loadUrl("http://hamburg.onruby.de");
+  // mainWindow.openDevTools({"detach": true}) // debug, uh?
+});
+            </code></pre>
+          </section>
        	</section>
+
+        <section>
+          <section>
+            <h1>Example 2</h1>
+          </section>
+
+          <section>
+            <h2>init</h2>
+            <pre><code class="bash">
+npm init
+npm install --save-dev electron-prebuilt
+            </code></pre>
+          </section>
+          <section>
+            <h2>package.json addition</h2>
+            <pre><code>
+{
+  ...
+  "scripts": {
+    "start": "electron ."
+  }
+}
+            </code></pre>
+          </section>
+          <section>
+            <h2>main.js</h2>
+            <pre><code class="javascript">
+var app = require("app");
+var BrowserWindow = require("browser-window");
+var mainWindow = null;
+
+app.on('ready', function() {
+  // with node-integration jQuery wont assign itself to window
+  mainWindow = new BrowserWindow({"node-integration": false});
+  mainWindow.loadUrl('file://' + app.getAppPath() + '/index.html');
+});
+            </code></pre>
+          </section>
+          <section>
+            <h2>index.html</h2>
+            <pre><code class="html">
+&lt;!DOCTYPE html>
+
+&lt;button>Point Less&lt;/button>
+
+&lt;script>
+(function() {
+  var remote = require('remote');
+  var app = remote.require('app');
+
+  var button = document.getElementsByTagName("button")[0];
+
+  button.addEventListener('click', function() {
+    console.log("point less");
+    app.quit();
+  });
+})();
+&lt;/script>
+
+            </code></pre>
+          </section>
+        </section>
 
         <section>
         	<h1>Questions?</h1>
@@ -156,6 +261,13 @@
 					<h2>Thanks</h2>
 				</section>
 
+        <section>
+          <h2>Links</h2>
+          <ul>
+            <li><a href="https://github.com/atom/electron/tree/master/docs">Electron Guides</a></li>
+            <li><a href="https://github.com/sindresorhus/awesome-electron">Awesome Electron</a></li>
+          </ul>
+        </section>
 			</div>
 
 		</div>
@@ -186,6 +298,5 @@
 			});
 
 		</script>
-
 	</body>
 </html>
